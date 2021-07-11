@@ -16,14 +16,14 @@ NOTE: remember to re-build your app before deploying for your referral addresses
 
 ## Devlopment
 
-#run -
+###run -
 
-#set  SWAP_HOST_FEE_ADDRESS="your wallet address"
+set  SWAP_HOST_FEE_ADDRESS="your wallet address"
 
-#npm install 
+npm install 
 
-#npm run build 
+npm run build 
 
-#serve -s  build (first make sure to have serve install for that you can run -  npm install -g serve )
+serve -s  build (first make sure to have serve install for that you can run -  npm install -g serve )
 
 
