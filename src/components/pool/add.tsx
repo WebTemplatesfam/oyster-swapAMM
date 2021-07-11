@@ -6,6 +6,7 @@ import {
 } from "../../utils/pools";
 import { Button, Card, Col, Dropdown, Popover, Radio, Row } from "antd";
 import { useWallet } from "../../context/wallet";
+import   OverlayFunc from "../../../node_modules/antd/lib/dropdown/dropdown"
 import {
   useConnection,
   useConnectionConfig,
@@ -34,6 +35,7 @@ import { PoolIcon } from "../tokenIcon";
 import { AppBar } from "../appBar";
 import { Settings } from "../settings";
 import { programIds } from "../../utils/ids";
+
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -188,21 +190,23 @@ export const AddToLiquidity = () => {
 
   const addLiquidityButton = (
     <Dropdown.Button
+
+    
       className="add-button"
       onClick={() => executeAction(pool)}
       trigger={["click"]}
-      // disabled={
-      //   connected &&
-      //   (depositType === "both"
-      //     ? pendingTx ||
-      //       !A.account ||
-      //       !B.account ||
-      //       A.account === B.account ||
-      //       !hasSufficientBalance
-      //     : !getDepositToken()?.account ||
-      //       !getDepositToken()?.sufficientBalance())
-      // }
-      disabled={true}
+      disabled={
+        connected &&
+        (depositType === "both"
+          ? pendingTx ||
+            !A.account ||
+            !B.account ||
+            A.account === B.account ||
+            !hasSufficientBalance
+          : !getDepositToken()?.account ||
+            !getDepositToken()?.sufficientBalance())
+      }
+      // disabled={true}
       type="primary"
       size="large"
       overlay={
@@ -213,17 +217,19 @@ export const AddToLiquidity = () => {
         />
       }
     >
-      {/*{depositType === "both"*/}
-      {/*  ? generateActionLabel(*/}
-      {/*      pool ? ADD_LIQUIDITY_LABEL : CREATE_POOL_LABEL,*/}
-      {/*      connected,*/}
-      {/*      tokenMap,*/}
-      {/*      A,*/}
-      {/*      B*/}
-      {/*    )*/}
-      {/*  : generateExactOneLabel(connected, tokenMap, getDepositToken())}*/}
-      {/*{pendingTx && <Spin indicator={antIcon} className="add-spinner" />}*/}
-      Swap is being deprecated
+      {depositType === "both"
+        ? generateActionLabel(
+            pool ? ADD_LIQUIDITY_LABEL : CREATE_POOL_LABEL,
+            connected,
+      
+          tokenMap,
+          A,
+            B
+         )
+        : generateExactOneLabel(connected, tokenMap, getDepositToken())
+}
+      {pendingTx && <Spin indicator={antIcon} className="add-spinner" />}
+   
     </Dropdown.Button>
   );
 

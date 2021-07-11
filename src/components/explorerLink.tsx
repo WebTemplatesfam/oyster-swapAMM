@@ -22,7 +22,7 @@ export const ExplorerLink = (props: {
   }
 
   const length = props.length ?? 9;
-
+// eslint-disable-next-line
   return (
     <a
       href={`https://explorer.solana.com/${type}/${address}`}

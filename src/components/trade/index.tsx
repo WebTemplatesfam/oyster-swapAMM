@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-duplicate-props */
+// eslint-disable-next-line
 import { Button, Card, Popover, Spin, Typography } from "antd";
 import React, { useEffect, useMemo, useState } from "react";
 import {
@@ -146,32 +148,32 @@ export const TradeEntry = () => {
         size="large"
         onClick={connected ? handleSwap : connect}
         style={{ width: "100%" }}
-        disabled={true}
-        // disabled={
-        //   connected &&
-        //   (pendingTx ||
-        //     !A.account ||
-        //     !B.mintAddress ||
-        //     A.account === B.account ||
-        //     !A.sufficientBalance() ||
-        //     !pool)
-        // }
+        
+        disabled={
+          connected &&
+          (pendingTx ||
+            !A.account ||
+            !B.mintAddress ||
+            A.account === B.account ||
+            !A.sufficientBalance() ||
+            !pool)
+        }
       >
-        {/*{generateActionLabel(*/}
-        {/*  !pool*/}
-        {/*    ? POOL_NOT_AVAILABLE(*/}
-        {/*        getTokenName(tokenMap, A.mintAddress),*/}
-        {/*        getTokenName(tokenMap, B.mintAddress)*/}
-        {/*      )*/}
-        {/*    : SWAP_LABEL,*/}
-        {/*  connected,*/}
-        {/*  tokenMap,*/}
-        {/*  A,*/}
-        {/*  B,*/}
-        {/*  true*/}
-        {/*)}*/}
-        {/*{pendingTx && <Spin indicator={antIcon} className="add-spinner" />}*/}
-        Swap is being deprecated
+      {generateActionLabel(
+          !pool
+            ? POOL_NOT_AVAILABLE(
+                getTokenName(tokenMap, A.mintAddress),
+                getTokenName(tokenMap, B.mintAddress)
+              )
+           : SWAP_LABEL,
+          connected,
+          tokenMap,
+          A,
+          B,
+          true
+        )}
+        {pendingTx && <Spin indicator={antIcon} className="add-spinner" />}
+
       </Button>
       <TradeInfo pool={pool} />
     </>

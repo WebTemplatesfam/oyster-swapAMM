@@ -11,7 +11,7 @@ import { AccountInfo, Connection, PublicKey } from "@solana/web3.js";
 import { programIds, SWAP_HOST_FEE_ADDRESS, WRAPPED_SOL_MINT } from "./ids";
 import { AccountLayout, u64, MintInfo, MintLayout } from "@solana/spl-token";
 import { usePools } from "./pools";
-import { TokenAccount, PoolInfo } from "./../models";
+import { TokenAccount, PoolInfo, publicKey } from "./../models";
 import { notify } from "./notifications";
 import { chunks } from "./utils";
 import { EventEmitter } from "./eventEmitter";
@@ -312,6 +312,7 @@ function wrapNativeAccount(
       isNative: true,
       rentExemptReserve: null,
       closeAuthority: null,
+      address:pubkey
     },
   };
 }
