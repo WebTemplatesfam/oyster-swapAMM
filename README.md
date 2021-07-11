@@ -15,10 +15,15 @@ You may want to put these in local environment files (e.g. .env.development.loca
 NOTE: remember to re-build your app before deploying for your referral addresses to be reflected.
 
 ## Devlopment
-run -
-set  SWAP_HOST_FEE_ADDRESS="your wallet address"
-npm install 
-npm run build 
-serve -s  build (first make sure to have serve install for that you can run -  npm install -g serve )
+
+#run -
+
+#set  SWAP_HOST_FEE_ADDRESS="your wallet address"
+
+#npm install 
+
+#npm run build 
+
+#serve -s  build (first make sure to have serve install for that you can run -  npm install -g serve )
 
 
