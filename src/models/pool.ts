@@ -1,7 +1,55 @@
-import { AccountInfo, PublicKey } from "@solana/web3.js";
+// import { AccountInfo, PublicKey } from "@solana/web3.js";
 import { TokenAccount } from "./account";
+import {
+  
+  
+  PublicKey,
+ 
+  AccountInfo,
+  
+} from '@solana/web3.js';
 
 export const DEFAULT_DENOMINATOR = 10_000;
+
+
+
+
+
+// let Account:Token;
+// async function getConnection(): Promise<Token> {
+//   let acc:Token;
+// let connection: Connection;
+
+
+// let payer:Keypair;
+// payer=new Keypair();
+// let authority: PublicKey;
+// let nonce: number;
+// authority= payer.publicKey;
+
+// console.log('creating token A');
+// const connect =   new Connection('http://localhost:5000/', 'recent');
+
+
+// acc=  await  Token.createMint(
+//   connect,
+// payer,
+//  authority,
+// null,
+// 0,
+// authority
+
+// )
+
+// Account=acc;
+// return acc;
+// }
+
+
+  
+// = await  getConnection();
+
+
 
 export interface PoolInfo {
   pubkeys: {
