@@ -53,6 +53,15 @@ export const AppBar = (props: { left?: JSX.Element; right?: JSX.Element }) => {
             </a>
           </Menu.Item>
         </Menu>
+        <Button
+          type="text"
+          size="large"
+          onClick={() => {
+            console.log("Clicked");
+          }}
+        >
+          Test Button
+        </Button>
         {props.left}
       </div>
       <div className="App-Bar-right">
