@@ -1,9 +1,49 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Numberu64 } from "@solana/spl-token-swap";
-import { PublicKey, Account, TransactionInstruction } from "@solana/web3.js";
+import { PublicKey, Account, TransactionInstruction,Connection } from "@solana/web3.js";
 import * as BufferLayout from "buffer-layout";
 import { CurveType, PoolConfig } from "./pool";
-
+import { Token} from '@solana/spl-token';
 export { TokenSwap } from "@solana/spl-token-swap";
+
+
+
+let Acc:Token;
+async function getConnection(): Promise<Token> {
+  let acc:Token;
+
+/*
+  
+   cretaing new token
+
+
+ */
+
+let payer:Account;
+payer=new Account();
+let authority: PublicKey;
+// let nonce: number;
+authority= payer.publicKey;
+
+console.log('creating token A');
+const connect =   new Connection('http://localhost:5000/', 'recent');
+
+
+acc=  await  Token.createMint(
+  connect,
+payer,
+ authority,
+null,
+0,
+authority
+
+)
+
+Acc=acc;
+return acc;
+}
+
+
 
 /**
  * Layout for a public key
