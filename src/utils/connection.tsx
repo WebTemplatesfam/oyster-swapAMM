@@ -99,7 +99,7 @@ export function ConnectionProvider({ children = undefined as any }) {
     (async () => {
       const res = await new TokenListProvider().resolve();
       const list = res
-        .filterByChainId(chain.chainID)
+        .filterByChainId(chain.chainID) 
         .excludeByTag("nft")
         .getList();
       const knownMints = list.reduce((map, item) => {

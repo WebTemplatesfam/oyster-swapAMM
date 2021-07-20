@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import { Button, Card, Popover } from "antd";
 import { TradeEntry } from "./trade";
@@ -9,9 +10,12 @@ import { useHistory, useLocation } from "react-router-dom";
 // import { Exchange } from "./createtoken";
 import { TextField}  from "@material-ui/core"
 import { notify } from "../utils/notifications";
+import { createNewToken } from "./solana/token";
+import { useWallet } from "../context/wallet";
+import * as SecretFormField from "./solana/SolanaErrorHandler"
 
 
-export const ExchangeView = (props: {}) => {
+export const Exchange = ({ children = null as any }) => {
   const tabStyle: React.CSSProperties = { width: 120 };
   const tabList = [
     {
@@ -46,12 +50,8 @@ export const ExchangeView = (props: {}) => {
 
   function getdata(val:any){
 
-    notify({
-      description:"call",
-      message: "Adding liquidity cancelled.",
-      type: "error",
-    });
-
+  
+    createToken(val.target.value)
          
 
   }
@@ -65,6 +65,55 @@ export const ExchangeView = (props: {}) => {
     });
 
   }
+  let payerSecret :"";
+  let mintAuthorityAddress = ("");
+  let freezeAuthorityAddress = ("");
+  let tokenDecimals = (0);
+  let createdTokenAddress = ("");
+  let creatingToken = (false);
+  let tokenLink = ("");
+  let errorMessage = ("");
+  let signExternally = (true);
+  let wal= useWallet()
+
+  let createToken = async (val:any) => {   
+    tokenLink = "";
+    createdTokenAddress = "";
+    creatingToken = true;
+    errorMessage = "";
+    try {
+      payerSecret=val;
+      mintAuthorityAddress=val;
+      freezeAuthorityAddress=val ;
+      createdTokenAddress = await createNewToken(
+       payerSecret,
+       mintAuthorityAddress,
+
+        freezeAuthorityAddress,
+        tokenDecimals,
+        signExternally
+      );
+          
+      notify({
+        message: "Tokens created.",
+        type: "success",
+        description: createdTokenAddress,
+      });
+      tokenLink = `https://explorer.solana.com/address/${createdTokenAddress}`;
+    } catch (err) {
+
+      errorMessage = SecretFormField.getErrorMessage(err);
+      notify({
+        description: errorMessage,
+        message: "creatiing tokendcancelled.",
+        type: "error "
+      });
+    }
+
+    creatingToken = false;
+  };
+
+
 
   return (
     <>
@@ -103,7 +152,28 @@ export const ExchangeView = (props: {}) => {
       </Card>
 
 
+        <TextField
+        label="hash"
+        variant="outlined"
+        style={{width:190}}
+        type="text"
+        onChange={getdata}
+        
+        />
 
+<Button value="contained" color="primary"   style={{width:80}}>
+  Primary
+</Button>
+
+
+<TextField
+        label="hash"
+        variant="outlined"
+        style={{width:190}}
+        type="text"
+        
+        
+        />
       
     </>
   );

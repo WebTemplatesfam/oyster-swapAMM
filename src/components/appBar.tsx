@@ -1,15 +1,52 @@
 import React from "react";
-import { Button, Menu } from "antd";
+import { Button, Menu, } from "antd";
 import { useWallet } from "../context/wallet";
 import { AccountInfo } from "./accountInfo";
 import { WalletConnect } from "./walletConnect";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, Route, useHistory, useLocation } from "react-router-dom";
+import * as BufferLayout from "buffer-layout";
+import {
+  
+  Connection,
+  PublicKey,
+  Account
+  
+  
+} from '@solana/web3.js';
+import { Token} from '@solana/spl-token';
+import { notify } from "../utils/notifications";
+// import {createToken} from "./createtoken"
+// import {Exchange } from "./createtoken"
+import {BrowserRouter as Router} from "react-router-dom"
+
+// import  {createNewToken} from "./token/index";
+// import * as SolanaErrorHandler from "@/solana/SolanaErrorHandler";
+// import { useRef } from 'react';
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+// const createdToenAddress = useRef("");
+
+let createdToenAddress="";
+let link ="";
+let error="";
+const testHandler = () => {
+ 
+
+//  createToken();
+
+
+
+ 
+}
+
+
 
 export const AppBar = (props: { left?: JSX.Element; right?: JSX.Element }) => {
   const { connected } = useWallet();
   const location = useLocation();
   const history = useHistory();
 
+ 
   const TopBar = (
     <div className="App-Bar">
       <div className="App-Bar-left">
@@ -24,6 +61,9 @@ export const AppBar = (props: { left?: JSX.Element; right?: JSX.Element }) => {
               Swap
             </Link>
           </Menu.Item>
+
+      
+
           <Menu.Item key="/add">
             <Link
               to={{
@@ -52,13 +92,23 @@ export const AppBar = (props: { left?: JSX.Element; right?: JSX.Element }) => {
               <sup>↗</sup>
             </a>
           </Menu.Item>
+
+
+          <Menu.Item key="/token">
+            <Link
+              to={{
+                pathname: "/token",
+              }}
+            >
+              create token 
+            </Link>
+          </Menu.Item>
+
         </Menu>
         <Button
           type="text"
           size="large"
-          onClick={() => {
-            console.log("Clicked");
-          }}
+          onClick={testHandler}
         >
           Test Button
         </Button>
