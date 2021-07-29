@@ -10,33 +10,27 @@ import { MarketProvider } from "./context/market";
 import { PoolOverview } from "./components/pool/view";
 import { ExchangeView } from "./components/exchange";
 import { Exchange } from "./components/createtoken";
+import CreateMusicToken from "./components/CreateMusicToken";
 
 export function Routes() {
   return (
     <>
 
-
-       
-   
       <HashRouter basename={"/"}>
         <ConnectionProvider>
           <WalletProvider>
             <AccountsProvider>
               <MarketProvider>
                 <CurrencyPairProvider>
-              <Exchange>
                   <Route exact path="/" component={ExchangeView} />
                   <Route exact path="/add" component={ExchangeView} />
                   <Route exact path="/info" component={() => <ChartsView />} />
-                  
                   <Route
                     exact
                     path="/pool"
                     component={() => <PoolOverview />}
                   />
-                <Route exact path="/token" component={Exchange}/>
-                
-                </Exchange>
+                <Route exact path="/token" component={CreateMusicToken}/> 
                 </CurrencyPairProvider>
               </MarketProvider>
             </AccountsProvider>

@@ -92,8 +92,6 @@ export const AppBar = (props: { left?: JSX.Element; right?: JSX.Element }) => {
               <sup>↗</sup>
             </a>
           </Menu.Item>
-
-
           <Menu.Item key="/token">
             <Link
               to={{
@@ -103,7 +101,6 @@ export const AppBar = (props: { left?: JSX.Element; right?: JSX.Element }) => {
               create token 
             </Link>
           </Menu.Item>
-
         </Menu>
         <Button
           type="text"
